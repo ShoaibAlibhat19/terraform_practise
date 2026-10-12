@@ -1,6 +1,6 @@
 variable "vpc_cidr" {
     description = "cidr value for vpc"
-    default = ""
+    default = "10.0.0.0/16"
     type = string
   
 }
