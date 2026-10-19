@@ -51,3 +51,17 @@ variable "private_subnet_5_cidr" {
 variable "private_subnet_6_cidr" {
   type = string
 }
+
+variable "igw_name" {
+    type = string
+  
+}
+
+variable "public_route_table_name" {
+  type = string
+}
+
+variable "nat_name" {
+    type = string
+  
+}

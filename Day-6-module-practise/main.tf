@@ -42,3 +42,46 @@ module "priavte_subnets" {
   availability_zone_1a = var.availability_zone_1a
   availability_zone_1b = var.availability_zone_1b
 }
+
+# internet - Gateway 
+module "igw" {
+  source = "./modules/internetGateway"
+
+  vpc_id   = module.vpc.vpc_id
+  igw_name = var.igw_name
+}
+
+# Public Route Table
+module "public_route_table" {
+  source = "./modules/route-table/public-rt"
+
+  vpc_id             = module.vpc.vpc_id
+  igw_id             = module.igw.igw_id
+  route_table_name   = var.public_route_table_name
+  public_subnet_1_id = module.public_subnets.public_subnet_1_id
+  public_subnet_2_id = module.public_subnets.public_subnet_2_id
+}
+
+module "nat" {
+    source = "./modules/natGateway"
+    vpc_id = module.vpc.vpc_id
+    nat_name = var.nat_name
+  
+}
+
+module "private_route_table" {
+  source = "./modules/route-table/private-rt"
+
+  vpc_id           = module.vpc.vpc_id
+  nat_gateway_id   = module.nat.nat_gateway_id
+  route_table_name = "project-private-rt"
+
+  private_subnet_ids = [
+    module.priavte_subnets.web_subnet_1_id,
+    module.priavte_subnets.web_subnet_2_id,
+    module.priavte_subnets.app_subnet_1_id,
+    module.priavte_subnets.app_subnet_2_id,
+    module.priavte_subnets.db_subnet_1_id,
+    module.priavte_subnets.db_subnet_2_id
+  ]
+}

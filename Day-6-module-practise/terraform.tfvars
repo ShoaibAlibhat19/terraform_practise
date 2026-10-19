@@ -19,3 +19,8 @@ private_subnet_4_cidr = "10.0.6.0/24"
 
 private_subnet_5_cidr = "10.0.7.0/24"
 private_subnet_6_cidr = "10.0.8.0/24"
+
+# internet gateway
+igw_name="myIgw"
+nat_name = "myNat"
+public_route_table_name = "public-rt"
