@@ -24,3 +24,7 @@ private_subnet_6_cidr = "10.0.8.0/24"
 igw_name="myIgw"
 nat_name = "myNat"
 public_route_table_name = "public-rt"
+bucket_name = "shoaib-s3-lifecycle-demo-2026"
+
+ami_id        = "ami-0d27e0fb3bac4d724"
+instance_type = "t2.micro"
