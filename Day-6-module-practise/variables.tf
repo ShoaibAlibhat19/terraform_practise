@@ -77,3 +77,8 @@ variable "instance_type" {
   type    = string
   default = "t2.micro"
 }
+
+variable "domain_name" {
+  description = "Your domain name"
+  type        = string
+}

@@ -98,3 +98,11 @@ module "ec2" {
   ami_id        = var.ami_id
   instance_type = var.instance_type
 }
+
+
+
+module "route53" {
+  source = "./modules/route53"
+
+  domain_name = var.domain_name
+}
